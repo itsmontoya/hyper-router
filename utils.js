@@ -1,0 +1,1 @@
+export const wrap = (subFn, action) => (...args) => [action, subFn(args)]
