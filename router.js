@@ -30,7 +30,6 @@ export function setRoutes(routes) {
 	routesState = prepared;
 }
 
-
 export function navigate(state, props) {
 	// Push to browser history
 	history.pushState({}, props.title, props.url);
@@ -53,6 +52,6 @@ export const setCurrentRoute = (state, props) => {
 	// Create new state with updated route
 	return [
 		{ ...state, currentRoute: match.route },
-		[dispatch => !!props.onchange ? dispatch(props.onchange) : {}, { title: match.title, url: match.url }]
+		[dispatch => routeChanged, match]
 	];
 }

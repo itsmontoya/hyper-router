@@ -1,4 +1,4 @@
-import * as urlUtils from "./libs/url.js"
+import { getURLParts } from "./url.js"
 
 // Route represents the route type
 export function Route({ title = "", name = "", url = "", component = "" }) {
@@ -6,7 +6,7 @@ export function Route({ title = "", name = "", url = "", component = "" }) {
 	this.name = name;
 	this.url = url;
 	this.component = component;
-	this.parts = urlUtils.GetURLParts(url);
+	this.parts = getURLParts(url);
 }
 
 Route.prototype.GetParams = function (parts) {

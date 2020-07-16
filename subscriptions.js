@@ -1,4 +1,4 @@
-import { wrap } from "./ utils.js";
+import { wrap } from "./utils.js";
 
 const listenerTypes = ["popstate", "hyperapp-pushstate"];
 const subFn = ([action]) => ({ action });
