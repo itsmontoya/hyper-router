@@ -1,10 +1,6 @@
-import { wrap } from "./utils.js";
+import { wrap, subFn } from "./utils.js";
 
 const listenerTypes = ["popstate", "hyperapp-pushstate"];
-const subFn = ([action]) => ({ action });
-
-export const onUrlChange = wrap(subFn, dispatchPopState);
-export const onUrlRequest = wrap(subFn, dispatchUrlRequest);
 
 const dispatchPopState = (dispatch, { action }) => {
 	const popstate = _ => dispatch(action, location.href)
@@ -39,3 +35,6 @@ function isClickEvent(evt) {
 		!evt.shiftKey &&
 		evt.target.matches("a")
 }
+
+export const onRouteChange = wrap(subFn, dispatchPopState);
+export const onUrlRequest = wrap(subFn, dispatchUrlRequest);
