@@ -1,6 +1,5 @@
 import { Lookup } from "./lookupTable.js";
 import { Route } from "./route.js";
-import { routeChanged } from "./actions.js";
 import { getURLParts } from "./url.js";
 
 let routesState = [],
@@ -29,34 +28,4 @@ export function setRoutes(routes) {
 	routesByName = Lookup(prepared, "name");
 	// Assign prepared to r
 	routesState = prepared;
-}
-
-export function navigate(state, props) {
-	// Push to browser history
-	history.pushState({}, props.title, props.url);
-	// Return SetCurrentRoute action
-	return setCurrentRoute(state);
-}
-
-// Effects
-export const setCurrentRoute = (state) => {
-	// Set path as current location path
-	const path = document.location.pathname
-	// Get route match for current path
-	const match = getRouteMatch(path);
-	// Check to see if match exists
-	if (match === null) {
-		// Route match not found, throw error
-		throw (`404: cannot find route match for ${path}`)
-	}
-
-
-	return [
-		// Might be able to return an unmodified state here
-		{ ...state },
-		[
-			(dispatch, match) => dispatch(routeChanged, match),
-			match
-		]
-	];
 }
