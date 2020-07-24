@@ -8,33 +8,10 @@ const dispatchPopState = (dispatch, { action }) => {
 	return () => removeEventListeners(popstate)
 };
 
-const dispatchUrlRequest = (dispatch, { action }) => {
-	const onClick = onClickHandler(dispatch, action);
-	addEventListener("click", onClick)
-	return () => removeEventListener("click", onClick)
-};
-
-const onClickHandler = (dispatch, action) => evt => {
-	if (!isClickEvent(evt)) {
-		return;
-	}
-
-	evt.preventDefault()
-	dispatch(action, { url: evt.target.getAttribute("href") })
-};
-
 const addEventListeners = popstate => listenerTypes
 	.forEach(listener => addEventListener(listener, popstate));
 
 const removeEventListeners = popstate => listenerTypes
 	.forEach(listener => removeEventListener(listener, popstate));
 
-function isClickEvent(evt) {
-	return !evt.ctrlKey &&
-		!evt.metaKey &&
-		!evt.shiftKey &&
-		evt.target.matches("a")
-}
-
-export const onRouteChange = wrap(subFn, dispatchPopState);
-export const onUrlRequest = wrap(subFn, dispatchUrlRequest);
+export const onUrlChange = wrap(subFn, dispatchPopState);
