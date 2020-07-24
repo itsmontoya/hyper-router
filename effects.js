@@ -1,13 +1,25 @@
-import { wrap } from "./ utils.js";
+import { getRouteMatch } from "./router.js";
+import { routeChanged } from "./actions.js";
+import { effect } from "./utils.js";
 
-const subFn = ([url]) => ({ url });
+export const pushUrl = (state, props) => {
+	history.pushState({}, props.title, props.url);
+	// Return unmodified state
+	return setCurrentRoute(state);
+}
 
-export const pushUrl = wrap(
-	subFn,
-	(_, { url }) => dispatchPushUrl(url)
-);
+// Effects
+export const setCurrentRoute = state => {
+	// Set path as current location path
+	const path = document.location.pathname
+	// Get route match for current path
+	const match = getRouteMatch(path);
 
-const dispatchPushUrl = url => {
-	history.pushState({}, "", url)
-	dispatchEvent(new CustomEvent("hyperapp-pushstate"))
+	// Check to see if match exists
+	if (match === null) {
+		// Route match not found, throw error
+		throw (`404: cannot find route match for ${path}`)
+	}
+
+	return effect(state, routeChanged, match);
 }
