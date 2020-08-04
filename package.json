@@ -1,6 +1,6 @@
 {
   "name": "hyper-router",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "URL router for HyperApp",
   "main": "router.js",
   "scripts": {
