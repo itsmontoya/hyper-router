@@ -1,0 +1,23 @@
+{
+  "name": "hyper-router",
+  "version": "0.0.1",
+  "description": "URL router for HyperApp",
+  "main": "router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsmontoya/hyper-router.git"
+  },
+  "keywords": [
+    "hyper-app",
+    "hyperApp"
+  ],
+  "author": "itsMontoya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsmontoya/hyper-router/issues"
+  },
+  "homepage": "https://github.com/itsmontoya/hyper-router#readme"
+}
